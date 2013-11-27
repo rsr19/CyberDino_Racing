@@ -23,8 +23,8 @@
         public Vector2 max = Vector2.zero;
     }
      
-    public class joystickC : MonoBehaviour{
-        static private joystickC[] joysticks;                    // A static collection of all joysticks
+    public class ScreenInput : MonoBehaviour{
+        static private ScreenInput[] joysticks;                    // A static collection of all joysticks
         static private bool enumeratedJoysticks=false;
         static private float tapTimeDelta = 0.3f;               // Time allowed between taps
      
@@ -133,7 +133,7 @@
             if ( !enumeratedJoysticks )
             {
                 // Collect all joysticks in the game, so we can relay finger latching messages
-                joysticks = (joystickC[])  FindObjectsOfType( typeof(joystickC) );
+                joysticks = (ScreenInput[])  FindObjectsOfType( typeof(ScreenInput) );
                 enumeratedJoysticks = true;
             }   
                
@@ -192,7 +192,7 @@
                         }
                                                    
                         // Tell other joysticks we've latched this finger
-                        foreach ( joystickC j in joysticks )
+                        foreach ( ScreenInput j in joysticks )
                         {
                             if ( j != this )
                                 j.LatchedFinger( touch.fingerId );
