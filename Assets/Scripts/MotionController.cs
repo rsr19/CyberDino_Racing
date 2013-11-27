@@ -94,6 +94,9 @@ public class MotionController : MonoBehaviour {
 		// Actually move the Vehicle
 		this.transform.Translate(new Vector3(-move,0,0) * Time.deltaTime); // Move forward/reverse
 		this.transform.Rotate (0,turn,0); // Turn left/right
+		
+		//quick edit by robert
+		//Debug.Log("mx: " + x + " my: " + y);
 	}
 	
 
