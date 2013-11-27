@@ -37,6 +37,8 @@
 	
 		private GameObject player;
 		private MotionController motionScript;
+		private float xMotion;
+		private float yMotion;
      
         private int lastFingerId = -1;                              // Finger last used for this joystick
         private float tapTimeWindow;                            // How much time there is left for a tap to occur
@@ -57,10 +59,10 @@
         public void Start()
         {
 			//find the player
-			player = GameObject.Find("PlayerCar");
+			player = GameObject.FindGameObjectWithTag("Player");
 		
 			//get the player motion script
-			motionScript = player.gameObject.GetComponent<MotionController>();
+			motionScript = player.GetComponent<MotionController>();
 		
             // Cache this component at startup instead of looking up every frame   
             gui = (GUITexture) GetComponent( typeof(GUITexture) );
@@ -260,13 +262,13 @@
                 position.y = Mathf.Sign( position.y ) * ( absoluteY - deadZone.y ) / ( 1 - deadZone.y );
             }
 		
-		
-		//put the position of the joystick into the control behavior of the car
+		//put the position of the joystick into the control behavior of the player character
 		motionScript.x = position.y;
 		motionScript.y = position.x;
 		
-		//Debug.Log("x: " + position.x + " y: " + position.y);
-		//Debug.Log(player);
+		//Debug.Log("x: " + xMotion + " y: " + yMotion);
+		Debug.Log("mx: " + motionScript.x + " my: " + motionScript.y);
+		Debug.Log(player);
         }
      
     }
