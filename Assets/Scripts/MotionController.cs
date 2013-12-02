@@ -1,6 +1,6 @@
 ﻿// Name: Lee Whittaker
 // Project: Cyber-Dino Racing
-// Date: 11/25/2013
+// Date: 12/02/2013
 
 using UnityEngine;
 using System.Collections;
@@ -201,5 +201,17 @@ public class MotionController : MonoBehaviour {
 		}
 		this.transform.LookAt(GameObject.Find("tracker" + nodeNum.ToString("000")).transform);
 		this.transform.Rotate (0,0,0);
+	}
+	
+	
+	
+	
+	// GetLap
+	// Purpose: Get this vehicle's lap
+	// Parameters: none
+	// Returns: int lap
+	public int GetLap()
+	{
+		return lap;
 	}
 }
