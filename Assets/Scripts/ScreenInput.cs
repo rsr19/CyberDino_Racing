@@ -16,6 +16,7 @@
      
     // A simple class for bounding how far the GUITexture will move
     // converted to CS by Aaron Blohowiak, Aug 2009
+	// Changed for CyberDino Racing by Robert 12/03/13
      
     public class Boundary
     {
@@ -97,7 +98,7 @@
      
         public void Disable()
         {
-            gameObject.active = false;
+            gameObject.SetActive(false);
             enumeratedJoysticks = false;
         }
      
@@ -137,7 +138,7 @@
                 enumeratedJoysticks = true;
             }   
                
-            int count = iPhoneInput.touchCount;
+            int count = Input.touchCount;
            
             // Adjust the tap time window while it still available
             if ( tapTimeWindow > 0 )
@@ -151,7 +152,7 @@
             {
                 for(int i = 0;i < count; i++)
                 {
-                    iPhoneTouch touch = iPhoneInput.GetTouch(i);           
+                    Touch touch = Input.GetTouch(i);           
                     Vector2 guiTouchPos = touch.position - guiTouchOffset;
            
                     bool shouldLatchFinger = false;
@@ -222,7 +223,7 @@
                             gui.pixelInset = tmprect;
                         }
                        
-                        if ( touch.phase == iPhoneTouchPhase.Ended || touch.phase == iPhoneTouchPhase.Canceled )
+                        if ( touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled )
                             ResetJoystick();                   
                     }          
                 }
@@ -265,10 +266,6 @@
 		//put the position of the joystick into the control behavior of the player character
 		motionScript.x = position.y;
 		motionScript.y = position.x;
-		
-		//Debug.Log("x: " + xMotion + " y: " + yMotion);
-		Debug.Log("mx: " + motionScript.x + " my: " + motionScript.y);
-		Debug.Log(player);
         }
      
     }
