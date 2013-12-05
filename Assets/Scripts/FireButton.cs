@@ -27,6 +27,7 @@ public class FireButton : MachineGun {
 					//if it is hit
 					if(Input.GetTouch(i).phase == TouchPhase.Stationary)
 					{
+						Debug.Log("hello");
 						FireFunc();
 					}
 				}

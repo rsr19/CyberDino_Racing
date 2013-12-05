@@ -329,6 +329,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13100000, guid: 4fe3e9960ae0bc34da2d848bf8ced3e6, type: 2}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 8fe204f8fb06ea14494a9b232ce0a7aa, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4fe3e9960ae0bc34da2d848bf8ced3e6, type: 2}
   m_RootGameObject: {fileID: 1178206970}
@@ -421,7 +425,7 @@ GUITexture:
   m_PrefabInternal: {fileID: 2033111765}
   m_GameObject: {fileID: 401009462}
   m_Enabled: 1
-  m_Texture: {fileID: 2800000, guid: 270c181fd13e5c04b965caf3adb62560, type: 3}
+  m_Texture: {fileID: 2800000, guid: ba526f34202481b42ab57fddd1651da4, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .5}
   m_PixelInset:
     serializedVersion: 2
@@ -1752,7 +1756,7 @@ Prefab:
     - target: {fileID: 13100000, guid: 4fe3e9960ae0bc34da2d848bf8ced3e6, type: 2}
       propertyPath: m_Texture
       value: 
-      objectReference: {fileID: 2800000, guid: ba526f34202481b42ab57fddd1651da4, type: 3}
+      objectReference: {fileID: 2800000, guid: 270c181fd13e5c04b965caf3adb62560, type: 3}
     - target: {fileID: 100000, guid: 4fe3e9960ae0bc34da2d848bf8ced3e6, type: 2}
       propertyPath: m_IsActive
       value: 0
@@ -1864,7 +1868,7 @@ GUITexture:
   m_PrefabInternal: {fileID: 322238654}
   m_GameObject: {fileID: 1178206970}
   m_Enabled: 1
-  m_Texture: {fileID: 2800000, guid: 726f31603e02d8c40979c1f28f6af758, type: 3}
+  m_Texture: {fileID: 2800000, guid: 8fe204f8fb06ea14494a9b232ce0a7aa, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .5}
   m_PixelInset:
     serializedVersion: 2
@@ -2018,7 +2022,7 @@ Prefab:
     - target: {fileID: 13100000, guid: 4fe3e9960ae0bc34da2d848bf8ced3e6, type: 2}
       propertyPath: m_Texture
       value: 
-      objectReference: {fileID: 2800000, guid: 8fe204f8fb06ea14494a9b232ce0a7aa, type: 3}
+      objectReference: {fileID: 2800000, guid: 726f31603e02d8c40979c1f28f6af758, type: 3}
     - target: {fileID: 100000, guid: 4fe3e9960ae0bc34da2d848bf8ced3e6, type: 2}
       propertyPath: m_IsActive
       value: 0
@@ -2118,7 +2122,7 @@ GUITexture:
   m_PrefabInternal: {fileID: 1265501200}
   m_GameObject: {fileID: 1420224435}
   m_Enabled: 1
-  m_Texture: {fileID: 2800000, guid: 8fe204f8fb06ea14494a9b232ce0a7aa, type: 3}
+  m_Texture: {fileID: 2800000, guid: 726f31603e02d8c40979c1f28f6af758, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .5}
   m_PixelInset:
     serializedVersion: 2
@@ -2202,7 +2206,7 @@ GUITexture:
   m_PrefabInternal: {fileID: 1025389736}
   m_GameObject: {fileID: 1527857032}
   m_Enabled: 1
-  m_Texture: {fileID: 2800000, guid: ba526f34202481b42ab57fddd1651da4, type: 3}
+  m_Texture: {fileID: 2800000, guid: 270c181fd13e5c04b965caf3adb62560, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .5}
   m_PixelInset:
     serializedVersion: 2
@@ -3166,7 +3170,7 @@ Prefab:
     - target: {fileID: 13100000, guid: 4fe3e9960ae0bc34da2d848bf8ced3e6, type: 2}
       propertyPath: m_Texture
       value: 
-      objectReference: {fileID: 2800000, guid: 270c181fd13e5c04b965caf3adb62560, type: 3}
+      objectReference: {fileID: 2800000, guid: ba526f34202481b42ab57fddd1651da4, type: 3}
     - target: {fileID: 100000, guid: 4fe3e9960ae0bc34da2d848bf8ced3e6, type: 2}
       propertyPath: m_IsActive
       value: 0

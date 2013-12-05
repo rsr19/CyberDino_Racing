@@ -2,14 +2,14 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\RaceStart.cs">
     <Files>
-      <File FileName="Assets\Scripts\RaceWin.cs" Line="60" Column="3" />
-      <File FileName="Assets\Scripts\RaceStart.cs" Line="59" Column="6" />
-      <File FileName="Assets\Scripts\ScreenInput.cs" Line="19" Column="52" />
+      <File FileName="..\..\homework sync\homework\pipeline\Zombie game v3\Assets\Scripts\RedNeckScript.js" Line="34" Column="4" />
+      <File FileName="Assets\Scripts\ScreenInput.cs" Line="84" Column="59" />
+      <File FileName="Assets\Scripts\RaceWin.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\RaceStart.cs" Line="96" Column="30" />
       <File FileName="Assets\Scripts\KeyboardInput.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\carbehavior.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MotionController.cs" Line="12" Column="10" />
-      <File FileName="Assets\Scripts\FireButton.cs" Line="30" Column="15" />
-      <File FileName="..\..\homework sync\homework\pipeline\Zombie game v3\Assets\Scripts\RedNeckScript.js" Line="34" Column="4" />
+      <File FileName="Assets\Scripts\MotionController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\FireButton.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

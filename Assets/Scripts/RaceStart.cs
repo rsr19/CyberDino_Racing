@@ -19,6 +19,7 @@ public class RaceStart : MonoBehaviour {
 	public Transform[] childTex = new Transform[4];
 	
 	private float time = 1000;
+	private int index = 0;
 	
 	//the countdown game objects
 	/*private Transform count1;
@@ -52,20 +53,14 @@ public class RaceStart : MonoBehaviour {
 		for(int i = 0; i < childTex.Length; i++)
 		{
 			childTex[i] = transform.FindChild("countTex" + i);
-			childTex[i].active = true;
-			//StartCoroutine("WaitToDisplay");
-			WaitToDisplay();
-			childTex[i].active = false;
-			//Debug.Log(childTex[i]);
 		}
 		
-		playerMotion.active = true;
-		cpuMotion.active = true;
+		InvokeRepeating ("CountDown", 1.0f, 1.0f);
 		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		/*if (Input.GetKeyDown ("space")){
 		if (childTex[3].active == true)
 		{
@@ -76,29 +71,39 @@ public class RaceStart : MonoBehaviour {
 			childTex[3].active = true;
 		}
 		}*/
-
+		//loop through the array assigning it the child objects
+		/*for(int i = 0; i < childTex.Length; i++)
+		{
+			childTex[i] = transform.FindChild("countTex" + i);
+			childTex[i].active = true;
+			//StartCoroutine("WaitToDisplay");
+			//WaitToDisplay();
+			//childTex[i].active = false;
+			//Debug.Log(childTex[i]);
+		}*/
+		
 	}
 	
-	/*IEnumerator WaitToDisplay()
+	void CountDown()
 	{
-		Debug.Log("yellow");
-		yield return new WaitForSeconds(10000000.0f);
-	}*/
-	
-	void WaitToDisplay()
-	{
-			
-		if(time > 0)
+		if(index > 3) 
 		{
-			time -= Time.deltaTime;	
-			//Debug.Log(time);
+			childTex[index - 1].active = false;
+		
+			playerMotion.active = true;
+			cpuMotion.active = true;
+			
+			CancelInvoke("CountDown");
 		}
 		else
 		{
-			//Debug.Log("Return right");
-			return;
+			childTex[index].active = true;
+			if(index > 0)
+			{
+				childTex[index - 1].active = false;
+			}
+		
+			index++;
 		}
-		//Debug.Log("Return wrong");
 	}
-	
 }

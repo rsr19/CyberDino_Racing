@@ -16,7 +16,7 @@
      
     // A simple class for bounding how far the GUITexture will move
     // converted to CS by Aaron Blohowiak, Aug 2009
-	// Changed for CyberDino Racing by Robert 12/03/13
+	// Changed for CyberDino Racing by Robert 12/04/13
      
     public class Boundary
     {
@@ -81,8 +81,8 @@
             {              
                 // This is an offset for touch input to match with the top left
                 // corner of the GUI
-                guiTouchOffset.x = defaultRect.width * 2;
-                guiTouchOffset.y = defaultRect.height * 1.2f;
+                guiTouchOffset.x = defaultRect.width * 2f;
+                guiTouchOffset.y = defaultRect.height * 1.5f;
                
                 // Cache the center of the GUI, since it doesn't change
                 guiCenter.x = defaultRect.x + guiTouchOffset.x;
@@ -98,7 +98,7 @@
      
         public void Disable()
         {
-            gameObject.SetActive(false);
+            gameObject.active = false;
             enumeratedJoysticks = false;
         }
      
@@ -138,7 +138,7 @@
                 enumeratedJoysticks = true;
             }   
                
-            int count = Input.touchCount;
+            int count = iPhoneInput.touchCount;
            
             // Adjust the tap time window while it still available
             if ( tapTimeWindow > 0 )
@@ -152,7 +152,7 @@
             {
                 for(int i = 0;i < count; i++)
                 {
-                    Touch touch = Input.GetTouch(i);           
+                    iPhoneTouch touch = iPhoneInput.GetTouch(i);           
                     Vector2 guiTouchPos = touch.position - guiTouchOffset;
            
                     bool shouldLatchFinger = false;
@@ -223,7 +223,7 @@
                             gui.pixelInset = tmprect;
                         }
                        
-                        if ( touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled )
+                        if ( touch.phase == iPhoneTouchPhase.Ended || touch.phase == iPhoneTouchPhase.Canceled )
                             ResetJoystick();                   
                     }          
                 }
@@ -263,9 +263,13 @@
                 position.y = Mathf.Sign( position.y ) * ( absoluteY - deadZone.y ) / ( 1 - deadZone.y );
             }
 		
-		//put the position of the joystick into the control behavior of the player character
-		motionScript.x = position.y;
-		motionScript.y = position.x;
+		if(Input.GetAxis("Vertical") == 0 && Input.GetAxis ("Horizontal") == 0)
+		{
+			//put the position of the joystick into the control behavior of the player character
+			motionScript.x = position.y;
+			motionScript.y = position.x;
+		}
+		
         }
      
     }
