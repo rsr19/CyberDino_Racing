@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿// Name: Robert Reed
+// Project: Cyber-Dino Racing
+// Date: 12/06/2013
+using UnityEngine;
 using System.Collections;
 
 public class RaceWin : MonoBehaviour {
@@ -15,6 +18,12 @@ public class RaceWin : MonoBehaviour {
 	//win or lose tests
 	private bool winRace = false;
 	private bool looseRace = false;
+	
+	//the win texture
+	public Texture winTex;
+	
+	//the loose texture
+	public Texture looseTex;
 
 	// Use this for initialization
 	void Start () {
@@ -51,12 +60,12 @@ public class RaceWin : MonoBehaviour {
 		//if you won the race display the text
 		if(winRace == true)
 		{
-			GUI.Label(new Rect(10, 10, 100, 100), "You won!");	
+			GUI.DrawTexture(new Rect(Screen.width / 2, Screen.height / 2, 100, 100), winTex, ScaleMode.ScaleToFit, true, 0);	
 		}
 		//else if you loose say so
 		else if(looseRace == true)
 		{
-			GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 100, 100), "You lost =(");
+			GUI.DrawTexture(new Rect(Screen.width / 2, Screen.height / 2, 100, 100), looseTex, ScaleMode.ScaleToFit, true, 0);
 		}
 	}
 }

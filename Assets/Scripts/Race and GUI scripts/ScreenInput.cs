@@ -16,7 +16,7 @@
      
     // A simple class for bounding how far the GUITexture will move
     // converted to CS by Aaron Blohowiak, Aug 2009
-	// Changed for CyberDino Racing by Robert 12/04/13
+	// Changed for CyberDino Racing by Robert 12/06/13
      
     public class Boundary
     {
@@ -44,8 +44,8 @@
         private int lastFingerId = -1;                              // Finger last used for this joystick
         private float tapTimeWindow;                            // How much time there is left for a tap to occur
         private Vector2 fingerDownPos;
-        private float fingerDownTime;
-        private float firstDeltaTime = 0.5f;
+        //private float fingerDownTime;
+        //private float firstDeltaTime = 0.5f;
      
         private GUITexture gui;                             // Joystick graphic
         private Rect defaultRect;                               // Default position / extents of the joystick graphic
@@ -98,7 +98,7 @@
      
         public void Disable()
         {
-            gameObject.active = false;
+            gameObject.SetActive(false);
             enumeratedJoysticks = false;
         }
      
@@ -138,7 +138,7 @@
                 enumeratedJoysticks = true;
             }   
                
-            int count = iPhoneInput.touchCount;
+            int count = Input.touchCount;
            
             // Adjust the tap time window while it still available
             if ( tapTimeWindow > 0 )
@@ -152,7 +152,7 @@
             {
                 for(int i = 0;i < count; i++)
                 {
-                    iPhoneTouch touch = iPhoneInput.GetTouch(i);           
+                    Touch touch = Input.GetTouch(i);           
                     Vector2 guiTouchPos = touch.position - guiTouchOffset;
            
                     bool shouldLatchFinger = false;
@@ -178,7 +178,7 @@
      
                             lastFingerId = touch.fingerId;
                             fingerDownPos = touch.position;
-                            fingerDownTime = Time.time;
+                            //fingerDownTime = Time.time;
                         }
                        
                         lastFingerId = touch.fingerId;
@@ -223,7 +223,7 @@
                             gui.pixelInset = tmprect;
                         }
                        
-                        if ( touch.phase == iPhoneTouchPhase.Ended || touch.phase == iPhoneTouchPhase.Canceled )
+                        if ( touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled )
                             ResetJoystick();                   
                     }          
                 }
