@@ -16,6 +16,7 @@
      
     // A simple class for bounding how far the GUITexture will move
     // converted to CS by Aaron Blohowiak, Aug 2009
+	// Changed for CyberDino Racing by Robert 12/04/13
      
     public class Boundary
     {
@@ -80,8 +81,8 @@
             {              
                 // This is an offset for touch input to match with the top left
                 // corner of the GUI
-                guiTouchOffset.x = defaultRect.width * 2;
-                guiTouchOffset.y = defaultRect.height * 1.2f;
+                guiTouchOffset.x = defaultRect.width * 2f;
+                guiTouchOffset.y = defaultRect.height * 1.5f;
                
                 // Cache the center of the GUI, since it doesn't change
                 guiCenter.x = defaultRect.x + guiTouchOffset.x;
@@ -262,13 +263,13 @@
                 position.y = Mathf.Sign( position.y ) * ( absoluteY - deadZone.y ) / ( 1 - deadZone.y );
             }
 		
-		//put the position of the joystick into the control behavior of the player character
-		motionScript.x = position.y;
-		motionScript.y = position.x;
+		if(Input.GetAxis("Vertical") == 0 && Input.GetAxis ("Horizontal") == 0)
+		{
+			//put the position of the joystick into the control behavior of the player character
+			motionScript.x = position.y;
+			motionScript.y = position.x;
+		}
 		
-		//Debug.Log("x: " + xMotion + " y: " + yMotion);
-		Debug.Log("mx: " + motionScript.x + " my: " + motionScript.y);
-		Debug.Log(player);
         }
      
     }

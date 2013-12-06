@@ -1,6 +1,6 @@
 ﻿// Name: Lee Whittaker
 // Project: Cyber-Dino Racing
-// Date: 11/25/2013
+// Date: 12/02/2013
 
 using UnityEngine;
 using System.Collections;
@@ -31,7 +31,7 @@ public class MotionController : MonoBehaviour {
 	private GameObject[] trackers; // Array of trackers on the track for respawn and checkpoint functions
 	private GameObject closestTracker; // the GameObject container for the tracker closest to the vehicle at all times.
 	private GameObject finishLine; // The collision object for crossing the finish line. 
-	private float lap = 1; // Laps, increments when passing 3 checkpoint and finishline objects.
+	private int lap = 1; // Laps, increments when passing 3 checkpoint and finishline objects.
 	private bool[] checks = new bool[]{false,false,false}; // Array of bools, each element turns true when checkpoints are reached.
 
 	
@@ -201,5 +201,17 @@ public class MotionController : MonoBehaviour {
 		}
 		this.transform.LookAt(GameObject.Find("tracker" + nodeNum.ToString("000")).transform);
 		this.transform.Rotate (0,0,0);
+	}
+	
+	
+	
+	
+	// GetLap
+	// Purpose: Get this vehicle's lap
+	// Parameters: none
+	// Returns: int lap
+	public int GetLap()
+	{
+		return lap;
 	}
 }
