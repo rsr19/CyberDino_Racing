@@ -12,7 +12,7 @@ public class WeaponClass : MonoBehaviour {
 	
 	// Damage Variables
 	[SerializeField]
-	protected float damage; // The ammount of damage the weapon can cause.
+	private float damage; // The ammount of damage the weapon can cause.
 	public float Damage
 	{
 		get
@@ -25,7 +25,7 @@ public class WeaponClass : MonoBehaviour {
 		}
 	}
 	
-	protected float damageDeduction; // Do not change this variable in Unity, the ammount of damage the racer's armor will take away from the weapon's total damage.
+	private float damageDeduction; // Do not change this variable in Unity, the ammount of damage the racer's armor will take away from the weapon's total damage.
 	public float DamageDeduction
 	{
 		get
@@ -38,7 +38,7 @@ public class WeaponClass : MonoBehaviour {
 		}
 	}
 	
-	protected float finalDamage; // Do not change this variable in Unity,the ammount of damage that will be dealt to the racer, damage minus damageDeduction.
+	private float finalDamage; // Do not change this variable in Unity,the ammount of damage that will be dealt to the racer, damage minus damageDeduction.
 	public float FinalDamage
 	{
 		get
@@ -50,6 +50,20 @@ public class WeaponClass : MonoBehaviour {
 			finalDamage = value;
 		}
 	}
+	
+	private static List<Transform> targets; // A list of targets that each weapon should have
+	public static List<Transform> Targets
+	{
+		get
+		{
+			return targets;
+		}
+		set
+		{
+			targets = value;
+		}
+	}
+	
 	
 	
 	//DealDamage

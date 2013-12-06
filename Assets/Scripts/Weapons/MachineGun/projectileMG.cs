@@ -1,6 +1,6 @@
 ﻿// Name: Samantha Spray
 // Project: Cyber-Dino Racing
-// Date: 11/29/13
+// Date: 12/4/13
 
 using UnityEngine;
 using System.Collections;
@@ -9,18 +9,12 @@ public class projectileMG : ProjectileClass {
 	
 	//Class Variables	
 	private RacerHealthClass theRacer; // Used to access variables on a racer.
-	
-	
-	void Start(){
-	
-		
-	}
+
 	
 	// Update is called once per frame
 	void Update () {
 	
 		FireProjectileFunc();
-		Physics.IgnoreLayerCollision(8, 9);
 		
 	}
 	

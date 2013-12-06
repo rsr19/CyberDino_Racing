@@ -1,6 +1,6 @@
 ﻿// Name: Samantha Spray
 // Project: Cyber-Dino Racing
-// Date: 11/27/13
+// Date: 12/4/13
 
 using UnityEngine;
 using System.Collections;
@@ -55,7 +55,7 @@ public class ProjectileClass : WeaponClass {
     //Purpose: Translates the projectile from its starting point, if the projDist is less than or equal to the projRange the gameObject destroys itself.
 	//Parameters: none
     //Returns: void
-	public void FireProjectileFunc(){
+	public virtual void FireProjectileFunc(){
 		
 		transform.Translate(Vector3.forward * Time.deltaTime * ProjSpeed);
 		ProjDist += Time.deltaTime * ProjSpeed;

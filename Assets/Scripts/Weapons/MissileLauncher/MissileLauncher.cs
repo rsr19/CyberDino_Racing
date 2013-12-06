@@ -5,9 +5,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class MachineGun : RangedWeaponClass {
+public class MissileLauncher : RangedWeaponClass {
 
-	
 	//FireFunc
     //Purpose: As long as there are more than 0 totalNumberOfProfectiles, there are more than 0 bulletsInClip, and nextFireTime is less than or equal to Time.time the ProjectileFunc function will be called. If there are less than 0 bulletsInClip and the nextReloadTime is less than or equal to Time.time the Reload function will be called. 
 	//Parameters: none

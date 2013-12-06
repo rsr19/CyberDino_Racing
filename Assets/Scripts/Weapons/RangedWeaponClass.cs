@@ -1,6 +1,6 @@
 ﻿// Name: Samantha Spray
 // Project: Cyber-Dino Racing
-// Date: 11/26/13
+// Date: 12/4/13
 
 using UnityEngine;
 using System.Collections;
@@ -11,7 +11,7 @@ public class RangedWeaponClass : WeaponClass {
 	
 	//Reload Variables
 	[SerializeField]
-	private float reloadTime = 0.0f;	// The ammount of time it takes the machine gun to reload.
+	private float reloadTime = 0.0f;	// The ammount of time it takes the gun to reload.
 	public float ReloadTime
 	{
 		get
@@ -24,7 +24,7 @@ public class RangedWeaponClass : WeaponClass {
 		}
 	}
 	
-	private float nextReloadTime; // The next time the machine gun will reload.
+	private float nextReloadTime; // The next time the gun will reload.
 	public float NextReloadTime
 	{
 		get
@@ -51,7 +51,7 @@ public class RangedWeaponClass : WeaponClass {
 		}
 	}
 	
-	private float nextFireTime; // The next time the machine gun will fire.
+	private float nextFireTime; // The next time the gun will fire.
 	public float NextFireTime
 	{
 		get
@@ -80,7 +80,7 @@ public class RangedWeaponClass : WeaponClass {
 	}
 	
 	[SerializeField]
-	private int numberOfClips; // The number of clips the machine gun comes with (this could be changed through the game by picking up power-ups that replenish or add to the number of clips).
+	private int numberOfClips; // The number of clips the gun comes with (this could be changed through the game by picking up power-ups that replenish or add to the number of clips).
 	public int NumberOfClips
 	{
 		get
@@ -94,7 +94,7 @@ public class RangedWeaponClass : WeaponClass {
 	}
 	
 	[SerializeField]
-	private int totalNumberOfClips; // The total number of clips the machine gun starts with.
+	private int totalNumberOfClips; // The total number of clips the gun starts with.
 	public int TotalNumberOfClips
 	{
 		get
@@ -122,7 +122,7 @@ public class RangedWeaponClass : WeaponClass {
 	
 	//Projectile Variable
 	[SerializeField]
-	private GameObject theProjectile; // The gameObject the machine gun will use as a bullet.
+	private GameObject theProjectile; // The gameObject the gun will use as a bullet.
 	public GameObject TheProjectile
 	{
 		get
