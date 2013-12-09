@@ -1308,6 +1308,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb508a0f7c27ff45be3aa0419a906fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winTex: {fileID: 2800000, guid: 192568ca27736a34c92b9e87389d6041, type: 3}
+  looseTex: {fileID: 2800000, guid: 80c5acf39b6753f499a732fbbf575b96, type: 3}
 --- !u!1 &763692548
 GameObject:
   m_ObjectHideFlags: 0
@@ -2049,10 +2051,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   childTex:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 401009462}
+  - {fileID: 1178206970}
+  - {fileID: 1420224435}
+  - {fileID: 1527857032}
 --- !u!1 &1260299427
 GameObject:
   m_ObjectHideFlags: 0
