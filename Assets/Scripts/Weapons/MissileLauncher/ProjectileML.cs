@@ -1,6 +1,6 @@
 ﻿// Name: Samantha Spray
 // Project: Cyber-Dino Racing
-// Date: 12/4/13
+// Date: 12/6/13
 
 using UnityEngine;
 using System.Collections;
@@ -9,8 +9,11 @@ public class ProjectileML : ProjectileClass {
 	
 	//Class Variables	
 	private RacerHealthClass theRacer; // Used to access variables on a racer.
+	private Transform target = null;
 	private bool haveTarget = false; // Used to check whether this projectile has a target or not.
+	
 	public bool HaveTarget
+
 	{
 		get
 		{
@@ -20,6 +23,10 @@ public class ProjectileML : ProjectileClass {
 		{
 			haveTarget = value;
 		}
+	}
+	
+	void Start(){
+		
 	}
 	
 	// Update is called once per frame
@@ -35,7 +42,6 @@ public class ProjectileML : ProjectileClass {
 	//Parameters: Collider other
     //Returns: void
 	void OnTriggerEnter(Collider other){
-		
 		if(other.gameObject.tag == "Weapon"){
 			Physics.IgnoreCollision(this.collider, other);
 		}
@@ -47,17 +53,21 @@ public class ProjectileML : ProjectileClass {
 		}
 	}
 	
+	/// <summary>
+	/// Fires the projectile func.
+	/// </summary>
 	public override void FireProjectileFunc(){
 		base.FireProjectileFunc(); // Calls the base FireProjectileFunc()
-		Transform target = null;
+
 		if(!HaveTarget){ // Checks if the projectile has a target, if not one will be randomly chosen from the list of Targets
 			int min = 0; // Minimum index number for the random range func.
-			int max = Targets.Count; // Maximum index number for the random range func.
+			int max = StaticWeaponVars.targets.Count; // Maximum index number for the random range func.
 			int randomIndex = Random.Range( min, max); // The random number that will be used as the index Targets for the specific target
-			target = Targets[randomIndex]; // The target
+			target = StaticWeaponVars.targets[randomIndex]; // The target
 		}
 		if(target != null){ // If the projectile has a target, it will look at the target
-			transform.LookAt(target);
+			Vector3 relativePosition = target.position - transform.position;
+			transform.rotation = Quaternion.LookRotation(relativePosition);
 		}
 	}
 	

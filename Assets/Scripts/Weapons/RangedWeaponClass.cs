@@ -160,22 +160,22 @@ public class RangedWeaponClass : WeaponClass {
 		
 	}
 	
-	//ProjectileFunc
-    //Purpose: Instantiates a projectile object and set the damage variables of the projectile equal to those of the machine gun. Decreases the totalNumberOfBullets and bulletsInClip by 1.
-	//Parameters: none
-    //Returns: void
-	public void ProjectileFunc(){
-		NextFireTime = Time.time + FirePauseTime;
-		
-		foreach(Transform MuzzlePos in MuzzlePosition){
-				GameObject spawnedProj = Instantiate(TheProjectile, MuzzlePos.position, MuzzlePos.rotation) as GameObject;
-				projectileMG theProj = spawnedProj.gameObject.GetComponent<projectileMG>();
-				theProj.Damage = Damage;
-				ProjectilesInClip--;
-				TotalNumberOfProjectiles--;
-		}
-		
-	}
+//	//ProjectileFunc
+//    //Purpose: Instantiates a projectile object and set the damage variables of the projectile equal to those of the machine gun. Decreases the totalNumberOfBullets and bulletsInClip by 1.
+//	//Parameters: none
+//    //Returns: void
+//	public void ProjectileFunc(){
+//		NextFireTime = Time.time + FirePauseTime;
+//		
+//		foreach(Transform MuzzlePos in MuzzlePosition){
+//				GameObject spawnedProj = Instantiate(TheProjectile, MuzzlePos.position, MuzzlePos.rotation) as GameObject;
+//				projectileMG theProj = spawnedProj.gameObject.GetComponent<projectileMG>();
+//				theProj.Damage = Damage;
+//				ProjectilesInClip--;
+//				TotalNumberOfProjectiles--;
+//		}
+//		
+//	}
 	
 	//Reload
     //Purpose: After a short time this function will reload bulletsInClip as long as numberOfClips is greater than 0, otherwise it will alert the racer that they are out of bullets.

@@ -14,6 +14,10 @@ public class PlayerHealthClass : RacerHealthClass {
 		
 	}
 	
+	void Awake(){
+		//StaticWeaponVars.AddRacer();
+	}
+	
 	// Update is called once per frame
 	void Update () {
 	

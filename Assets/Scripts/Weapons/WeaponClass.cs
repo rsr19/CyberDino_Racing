@@ -1,6 +1,6 @@
 ﻿// Name: Samantha Spray
 // Project: Cyber-Dino Racing
-// Date: 11/27/13
+// Date: 12/6/13
 
 using UnityEngine;
 using System.Collections;
@@ -51,18 +51,18 @@ public class WeaponClass : MonoBehaviour {
 		}
 	}
 	
-	private static List<Transform> targets; // A list of targets that each weapon should have
-	public static List<Transform> Targets
-	{
-		get
-		{
-			return targets;
-		}
-		set
-		{
-			targets = value;
-		}
-	}
+//	private static List<Transform> targets; // A list of targets that each weapon should have
+//	public static List<Transform> Targets
+//	{
+//		get
+//		{
+//			return targets;
+//		}
+//		set
+//		{
+//			targets = value;
+//		}
+//	}
 	
 	
 	
@@ -70,6 +70,15 @@ public class WeaponClass : MonoBehaviour {
     //Purpose: Takes the float variable armor from a racer object, calculates the final ammount of damage based on the weapon's damage and the racer's armor.
 	//Parameters: float armor
     //Returns: float finalDamage
+	/// <summary>
+	/// Deals damage.
+	/// </summary>
+	/// <returns>
+	/// The damage.
+	/// </returns>
+	/// <param name='rArmor'>
+	/// Racer's Armor.
+	/// </param>
 	public float DealDamage(float rArmor){
 		FinalDamage = Damage;
 		DamageDeduction = rArmor * Damage;
