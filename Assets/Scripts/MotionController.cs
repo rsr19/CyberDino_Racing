@@ -33,7 +33,9 @@ public class MotionController : MonoBehaviour {
 	private GameObject finishLine; // The collision object for crossing the finish line. 
 	private int lap = 1; // Laps, increments when passing 3 checkpoint and finishline objects.
 	private bool[] checks = new bool[]{false,false,false}; // Array of bools, each element turns true when checkpoints are reached.
-
+	
+	
+	private RaycastHit hitOld;
 	
 	void Start () {
 		
@@ -91,13 +93,14 @@ public class MotionController : MonoBehaviour {
 		// set turn from input
 		turn = y;
 		
+
 		// Actually move the Vehicle
 		//this.transform.Translate(new Vector3(-move,0,0) * Time.deltaTime); // Move forward/reverse
 		this.transform.Translate(new Vector3(0,0,move) * Time.deltaTime); // Move forward/reverse
 		this.transform.Rotate (0,turn,0); // Turn left/right
 	}
 	
-
+	
 	
 	// Trigger finish line collision
 	void OnTriggerEnter(Collider collision)
