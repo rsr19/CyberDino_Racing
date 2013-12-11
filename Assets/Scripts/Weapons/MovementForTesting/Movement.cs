@@ -21,13 +21,12 @@ public class Movement : MonoBehaviour {
 	private float turn = 0.0F; // controls left/right steering, set by y
 	
 	// Tubro Variables
-	private float oldMaxSpeed; // contains maxspeed data for reinitializing
+//	private float oldMaxSpeed; // contains maxspeed data for reinitializing
 
 	
 	// Use this for initialization
 	void Start () {
 		// Initialize Variables
-		oldMaxSpeed = maxspeed; // Set maxSpeed container for Turbo function
 	}
 	
 	// Update is called once per frame

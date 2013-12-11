@@ -1,17 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Weapons/MissileLauncher/ProjectileML.cs">
     <Files>
-      <File FileName="Assets/Scripts/Weapons/MissileLauncher/ProjectileML.cs" Line="36" Column="3" />
-=======
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Race and GUI scripts\ScreenInput.cs">
-    <Files>
-      <File FileName="Assets\Scripts\Race and GUI scripts\FireButton.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Race and GUI scripts\RaceWin.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Race and GUI scripts\RaceStart.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Race and GUI scripts\ScreenInput.cs" Line="19" Column="49" />
->>>>>>> 62598bbbd773bb127891b194f51ceced90f2ccad
+      <File FileName="Assets/Scripts/Weapons/RacerHealth/RacerHealthClass.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Weapons/WeaponClass.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Weapons/RangedWeaponClass.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Weapons/MachineGun/MachineGun.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Weapons/MissileLauncher/MissileLauncher.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Weapons/ProjectileClass.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Weapons/RacerHealth/OpponentHealthClass.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Weapons/RacerHealth/PlayerHealthClass.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Weapons/StaticWeaponVars.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Weapons/MissileLauncher/ProjectileML.cs" Line="33" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

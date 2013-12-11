@@ -1,6 +1,6 @@
 ﻿// Name: Samantha Spray
 // Project: Cyber-Dino Racing
-// Date: 12/6/13
+// Date: 12/09/13
 
 using UnityEngine;
 using System.Collections;
@@ -10,9 +10,16 @@ public class WeaponClass : MonoBehaviour {
 
 	// Class Variables and Properties
 	
-	// Damage Variables
+	#region Fields
+	// Damage Fields
 	[SerializeField]
 	private float damage; // The ammount of damage the weapon can cause.
+	private float damageDeduction; // Do not change this variable in Unity, the ammount of damage the racer's armor will take away from the weapon's total damage.
+	private float finalDamage; // Do not change this variable in Unity,the ammount of damage that will be dealt to the racer, damage minus damageDeduction.
+	#endregion Fields
+	
+	#region Properties
+	// Damage Properties
 	public float Damage
 	{
 		get
@@ -25,7 +32,6 @@ public class WeaponClass : MonoBehaviour {
 		}
 	}
 	
-	private float damageDeduction; // Do not change this variable in Unity, the ammount of damage the racer's armor will take away from the weapon's total damage.
 	public float DamageDeduction
 	{
 		get
@@ -38,7 +44,6 @@ public class WeaponClass : MonoBehaviour {
 		}
 	}
 	
-	private float finalDamage; // Do not change this variable in Unity,the ammount of damage that will be dealt to the racer, damage minus damageDeduction.
 	public float FinalDamage
 	{
 		get
@@ -50,21 +55,7 @@ public class WeaponClass : MonoBehaviour {
 			finalDamage = value;
 		}
 	}
-	
-//	private static List<Transform> targets; // A list of targets that each weapon should have
-//	public static List<Transform> Targets
-//	{
-//		get
-//		{
-//			return targets;
-//		}
-//		set
-//		{
-//			targets = value;
-//		}
-//	}
-	
-	
+	#endregion Properties
 	
 	//DealDamage
     //Purpose: Takes the float variable armor from a racer object, calculates the final ammount of damage based on the weapon's damage and the racer's armor.

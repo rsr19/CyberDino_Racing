@@ -29,6 +29,21 @@ public class MotionController : MonoBehaviour {
 
 	// Trackers and Finish Line Objects.
 	private GameObject[] trackers; // Array of trackers on the track for respawn and checkpoint functions
+	//creating properties
+	private GameObject[] Trackers{
+		get
+		{
+			if(trackers == null){
+				trackers = new GameObject[0];
+			}
+			return trackers;
+		}
+		set
+		{
+			trackers = value;
+		}
+
+	}
 	private GameObject closestTracker; // the GameObject container for the tracker closest to the vehicle at all times.
 	private GameObject finishLine; // The collision object for crossing the finish line. 
 	private int lap = 1; // Laps, increments when passing 3 checkpoint and finishline objects.
@@ -120,10 +135,11 @@ public class MotionController : MonoBehaviour {
 	// Test collision with track
 	void OnCollisionStay(Collision collision)
 	{
+		
 		// Update closest tracker while colliding with track
 		if (collision.gameObject.name == "Torus001")
 		{
-			foreach (GameObject node in trackers)
+			foreach (GameObject node in Trackers)// Checks for null values
 			{
 				float lastDistance = Vector3.Distance(this.transform.position, node.transform.position);
 				float thisDistance = Vector3.Distance(this.transform.position, closestTracker.transform.position);

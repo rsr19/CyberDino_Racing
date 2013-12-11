@@ -1,6 +1,6 @@
 ﻿// Name: Samantha Spray
 // Project: Cyber-Dino Racing
-// Date: 12/6/13
+// Date: 12/09/13
 
 using UnityEngine;
 using System.Collections;
@@ -14,17 +14,11 @@ public class MissileLauncher : RangedWeaponClass {
 	/// <summary>
 	/// Fires the func.
 	/// </summary>
-	public void FireFunc(){
+	public override void FireFunc(){
 		if(TotalNumberOfProjectiles > 0){
-//			if(ProjectilesInClip > 0){
-//				if(Time.time >= NextFireTime){
 			
 					ProjectileFunc();
-//				}
-//			}
-//			if(Time.time >= NextReloadTime){
-//				Reload();
-//			}
+
 		}
 		else{
 			

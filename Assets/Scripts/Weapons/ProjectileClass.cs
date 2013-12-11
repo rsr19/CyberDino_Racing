@@ -1,6 +1,6 @@
 ﻿// Name: Samantha Spray
 // Project: Cyber-Dino Racing
-// Date: 12/4/13
+// Date: 12/09/13
 
 using UnityEngine;
 using System.Collections;
@@ -10,8 +10,15 @@ public class ProjectileClass : WeaponClass {
 
 	// Class Variables and Properties
 	
+	#region Fields
 	[SerializeField]
 	private float projSpeed; // How fast the projectile travels.
+	[SerializeField]
+	private float projRange; // The farthest the projectile will travel.
+	private float projDist; // How far the projectile has traveled.
+	#endregion Fields
+	
+	#region Properties
 	public float ProjSpeed
 	{
 		get
@@ -24,8 +31,6 @@ public class ProjectileClass : WeaponClass {
 		}
 	}
 	
-	[SerializeField]
-	private float projRange; // The farthest the projectile will travel.
 	public float ProjRange
 	{
 		get
@@ -38,8 +43,7 @@ public class ProjectileClass : WeaponClass {
 		}
 	}
 	
-	private float projDist; // How far the projectile has traveled.
-	public float ProjDist
+	private float ProjDist
 	{
 		get
 		{
@@ -50,6 +54,9 @@ public class ProjectileClass : WeaponClass {
 			projDist = value;
 		}
 	}
+	#endregion Properties
+	
+	// Methods
 	
 	//FireProjectileFunc
     //Purpose: Translates the projectile from its starting point, if the projDist is less than or equal to the projRange the gameObject destroys itself.

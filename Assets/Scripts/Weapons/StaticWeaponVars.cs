@@ -8,7 +8,22 @@ using System.Collections.Generic;
 
 public class StaticWeaponVars : MonoBehaviour {
 
-	public static List<Transform> targets = new List<Transform>();
+	private static List<Transform> targets = new List<Transform>();
+	public static List<Transform> Targets
+	{
+		get
+		{
+			if(targets == null)
+			{
+				targets = new List<Transform>();
+			}
+			return targets;
+		}
+		set
+		{
+			targets = value;
+		}
+	}
 	
 	public static void AddRacer(RacerHealthClass racer){
 		if(!targets.Contains(racer.transform)){
