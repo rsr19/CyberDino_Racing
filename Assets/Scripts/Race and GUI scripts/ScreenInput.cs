@@ -56,6 +56,9 @@
         private Vector3 tmpv3;
         private Rect tmprect;
         private Color tmpclr;
+	
+		private float xOffNumb = 350;
+		private float yOffNumb = 250;
      
         public void Start()
         {
@@ -81,18 +84,18 @@
             {              
                 // This is an offset for touch input to match with the top left
                 // corner of the GUI
-                guiTouchOffset.x = defaultRect.width * 2f;
-                guiTouchOffset.y = defaultRect.height * 1.5f;
+                guiTouchOffset.x = defaultRect.width * (Screen.width / xOffNumb);
+                guiTouchOffset.y = defaultRect.height * (Screen.height / yOffNumb);
                
                 // Cache the center of the GUI, since it doesn't change
                 guiCenter.x = defaultRect.x + guiTouchOffset.x;
                 guiCenter.y = defaultRect.y + guiTouchOffset.y;
                
                 // Let's build the GUI boundary, so we can clamp joystick movement
-                guiBoundary.min.x = defaultRect.x - guiTouchOffset.x;
-                guiBoundary.max.x = defaultRect.x + guiTouchOffset.x;
-                guiBoundary.min.y = defaultRect.y - guiTouchOffset.y;
-                guiBoundary.max.y = defaultRect.y + guiTouchOffset.y;
+                guiBoundary.min.x = defaultRect.x - guiTouchOffset.x / 2;
+                guiBoundary.max.x = defaultRect.x + guiTouchOffset.x / 2;
+                guiBoundary.min.y = defaultRect.y - guiTouchOffset.y / 2;
+                guiBoundary.max.y = defaultRect.y + guiTouchOffset.y / 2;
             }
         }
      
@@ -232,15 +235,15 @@
             if ( !touchPad )
             {
                 // Get a value between -1 and 1 based on the joystick graphic location
-                position.x = ( gui.pixelInset.x + guiTouchOffset.x - guiCenter.x ) / guiTouchOffset.x;
-                position.y = ( gui.pixelInset.y + guiTouchOffset.y - guiCenter.y ) / guiTouchOffset.y;
+                position.x = ( gui.pixelInset.x + guiTouchOffset.x - guiCenter.x ) / (guiTouchOffset.x / 2);
+                position.y = ( gui.pixelInset.y + guiTouchOffset.y - guiCenter.y ) / (guiTouchOffset.y / 2);
             }
 		
            
             // Adjust for dead zone 
             float absoluteX = Mathf.Abs( position.x );
             float absoluteY = Mathf.Abs( position.y );
-           
+       
             if ( absoluteX < deadZone.x )
             {
                 // Report the joystick as being at the center if it is within the dead zone
@@ -263,12 +266,13 @@
                 position.y = Mathf.Sign( position.y ) * ( absoluteY - deadZone.y ) / ( 1 - deadZone.y );
             }
 		
-		if(Input.GetAxis("Vertical") == 0 && Input.GetAxis ("Horizontal") == 0)
-		{
-			//put the position of the joystick into the control behavior of the player character
-			motionScript.x = position.y;
-			motionScript.y = position.x;
-		}
+			if(Input.GetAxis("Vertical") == 0 && Input.GetAxis ("Horizontal") == 0)
+			{
+				//put the position of the joystick into the control behavior of the player character
+				motionScript.x = position.y;
+				motionScript.y = position.x;
+			
+			}
 		
         }
      

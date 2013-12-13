@@ -1,16 +1,19 @@
 ﻿// Name: Robert Reed
 // Project: Cyber-Dino Racing
-// Date: 12/03/2013
+// Date: 12/011/2013
 
 using UnityEngine;
 using System.Collections;
 
-public class FireButton : MachineGun {
+public class FireButton : MachineGun 
+{
+	public delegate void WeaponShoot();
+	public static event WeaponShoot shoot;
 
 	// Use this for initialization
 	void Start () 
 	{
-		RWStart();
+		//RWStart();
 	}
 	
 	// Update is called once per frame
@@ -25,9 +28,14 @@ public class FireButton : MachineGun {
 				if(this.guiTexture.HitTest(Input.GetTouch(i).position))
 				{
 					//if it is hit
-					if(Input.GetTouch(i).phase == TouchPhase.Stationary)
+					if(Input.GetTouch(i).phase == TouchPhase.Began)
 					{
-						FireFunc();
+						Debug.Log("fire");
+						
+						if(shoot != null)
+						{
+							shoot();
+						}
 					}
 				}
 			}
