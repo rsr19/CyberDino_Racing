@@ -1,4 +1,4 @@
-﻿// Name: Lee Whittaker
+// Name: Lee Whittaker
 // Project: Cyber-Dino Racing
 // Date: 12/02/2013
 
@@ -48,6 +48,10 @@ public class MotionController : MonoBehaviour {
 	private GameObject finishLine; // The collision object for crossing the finish line. 
 	private int lap = 1; // Laps, increments when passing 3 checkpoint and finishline objects.
 	private bool[] checks = new bool[]{false,false,false}; // Array of bools, each element turns true when checkpoints are reached.
+	
+	// Added by Myles to track position for rubberbanding effect.
+	private GameObject lastTracker; // Variable for the last tracker that was the closest tracker.
+	public int racePosition; // Their position on the map based on advancement of trackers.
 
 	
 	void Start () {
@@ -57,6 +61,7 @@ public class MotionController : MonoBehaviour {
 		finishLine = GameObject.Find ("FinishBox"); // Set Finish Line by name
 		trackers = GameObject.FindGameObjectsWithTag("tracker"); // Populate array with trackers
 		closestTracker = trackers[0]; // set first Closest Tracker object
+		lastTracker = closestTracker; // Added by Myles, sets lastTracker to closestTracker. (For Rubberbanding)
 
 		Debug.Log (lap); // Print First Lap
 
@@ -110,6 +115,13 @@ public class MotionController : MonoBehaviour {
 		//this.transform.Translate(new Vector3(-move,0,0) * Time.deltaTime); // Move forward/reverse
 		this.transform.Translate(new Vector3(0,0,move) * Time.deltaTime); // Move forward/reverse
 		this.transform.Rotate (0,turn,0); // Turn left/right
+		
+		// Added by Myles
+		// If the last tracker doesn't equal the closest tracker, change last tracker to closest tracker and increase race position by one.
+		if (lastTracker != closestTracker) {
+			racePosition++;
+			lastTracker = closestTracker;
+		}
 	}
 	
 
