@@ -11,20 +11,26 @@ public class RacerHealthClass : MonoBehaviour {
 	
 	#region Fields
 	[SerializeField]
-	private float totalHealth; // Total health of the racer.
+	private float totalHealth = 0.0F; // Total health of the racer.
 	[SerializeField]
-	private float health; // Current health of the racer, this is the variable to use when causing damage to the racer.
+	private float health = 0.0F; // Current health of the racer, this is the variable to use when causing damage to the racer.
 	[SerializeField]
-	[Range(.00f, 1.00f)] private float armor; // This variable should be between .00 and .99, it is used to reduce damage taken by the racer.
+	[Range(.00f, 1.00f)] private float armor = 0.0F; // This variable should be between .00 and .99, it is used to reduce damage taken by the racer.
 	private bool isDead = false; // This variable is used to determine whether or not the racer is dead.
-	private MotionController theMC; // MotionController is being called so that this script can use MotionController.Respawn().
+	
+	//private MotionController theMC; // MotionController is being called so that this script can use MotionController.Respawn().
 	#endregion Fields
 	
 	#region Properties
-	public float TotalHealth
+	public float TotalHealth // Total health of the racer.
 	{
 		get
 		{
+			if(totalHealth <= 0)
+			{
+				totalHealth = 100;
+			}
+			
 			return totalHealth;
 		}
 		set
@@ -33,10 +39,15 @@ public class RacerHealthClass : MonoBehaviour {
 		}
 	}
 	
-	public float Health
+	public float Health // Current health of the racer, this is the variable to use when causing damage to the racer.
 	{
 		get
 		{
+			if(health <= 0)
+			{
+				health = TotalHealth;
+			}
+			
 			return health;
 		}
 		set
@@ -46,7 +57,7 @@ public class RacerHealthClass : MonoBehaviour {
 		
 	}
 	
-	public float Armor
+	public float Armor // This variable should be between .00 and .99, it is used to reduce damage taken by the racer.
 	{
 		get
 		{
@@ -58,10 +69,18 @@ public class RacerHealthClass : MonoBehaviour {
 		}
 	}
 	
-	protected bool IsDead
+	protected bool IsDead // This variable is used to determine whether or not the racer is dead.
 	{
 		get
 		{
+			if(Health <= 0)
+			{
+				isDead = true;
+			}
+			else
+			{
+				isDead = false;
+			}
 			return isDead;
 		}
 		set
@@ -70,21 +89,21 @@ public class RacerHealthClass : MonoBehaviour {
 		}
 	}
 	
-	private MotionController TheMC
-	{
-		get
-		{
-			if(theMC == null)
-			{
-				theMC = new MotionController();
-			}
-			return theMC;
-		}
-		set
-		{
-			theMC = value;
-		}
-	}
+//	private MotionController TheMC
+//	{
+//		get
+//		{
+//			if(theMC == null)
+//			{
+//				theMC = new MotionController();
+//			}
+//			return theMC;
+//		}
+//		set
+//		{
+//			theMC = value;
+//		}
+//	}
 	#endregion Properties
 	
 	// Methods
@@ -98,9 +117,8 @@ public class RacerHealthClass : MonoBehaviour {
 	/// </summary>
 	public void RacerStart()
 	{
-		TotalHealth = 100;
-		//Create an instance of the MotionController class
-		TheMC = this.gameObject.GetComponent<MotionController>();
+//		//Create an instance of the MotionController class
+//		TheMC = this.gameObject.GetComponent<MotionController>();
 		//Set health equal to totalHealth at the begining of the race
 		Health = TotalHealth;
 	}
@@ -124,8 +142,7 @@ public class RacerHealthClass : MonoBehaviour {
 		// If the racer is dead it will respawn, change its isDead var to false and reset its health back to full
 		if(IsDead)
 		{
-			TheMC.Respawn();
-			IsDead = false;
+			Respawn();
 			RacerReset();
 		}
 		
@@ -140,7 +157,13 @@ public class RacerHealthClass : MonoBehaviour {
 	/// </summary>
 	public void RacerReset(){
 		
+		IsDead = false;
 		Health = TotalHealth;
+		
+	}
+	
+	public void Respawn()
+	{
 		
 	}
 	

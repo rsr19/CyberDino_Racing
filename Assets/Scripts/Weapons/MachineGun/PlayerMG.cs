@@ -1,6 +1,6 @@
 ﻿// Name: Samantha Spray
 // Project: Cyber-Dino Racing
-// Date: 12/4/13
+// Date: 12/16/13
 
 using UnityEngine;
 using System.Collections;
@@ -11,6 +11,18 @@ public class PlayerMG : MachineGun {
 		
 		RWStart();
 		
+	}
+	
+	void onEnable()
+	{
+		// Subscribe to the shoot event delegate
+		FireButton.shoot += FireFunc; 
+	}
+	
+	void onDisable()
+	{
+		// Unsubscribe to the shoot event delegate
+		FireButton.shoot -= FireFunc;
 	}
 	
 	
