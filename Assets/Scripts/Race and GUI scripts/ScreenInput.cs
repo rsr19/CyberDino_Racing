@@ -37,7 +37,8 @@
         public int tapCount;                                            // Current tap count
 	
 		private GameObject player;
-		private MotionController motionScript;
+		private MotionController motionConScript;
+		private PlayerMotion motionScript;
 		private float xMotion;
 		private float yMotion;
      
@@ -59,6 +60,7 @@
 	
 		private float xOffNumb = 350;
 		private float yOffNumb = 250;
+	
      
         public void Start()
         {
@@ -66,7 +68,14 @@
 			player = GameObject.FindGameObjectWithTag("Player");
 		
 			//get the player motion script
-			motionScript = player.GetComponent<MotionController>();
+			if(player.GetComponent<MotionController>())
+			{
+				motionConScript = player.GetComponent<MotionController>();
+			}
+			else if(player.GetComponent<PlayerMotion>())
+			{
+				motionScript = player.GetComponent<PlayerMotion>();
+			}
 		
             // Cache this component at startup instead of looking up every frame   
             gui = (GUITexture) GetComponent( typeof(GUITexture) );
@@ -132,7 +141,7 @@
                 ResetJoystick();
         }
      
-        public void Update()
+        public void FixedUpdate()
         {   
             if ( !enumeratedJoysticks )
             {
@@ -269,9 +278,16 @@
 			if(Input.GetAxis("Vertical") == 0 && Input.GetAxis ("Horizontal") == 0)
 			{
 				//put the position of the joystick into the control behavior of the player character
-				motionScript.x = position.y;
-				motionScript.y = position.x;
-			
+				if(player.GetComponent<MotionController>())
+				{
+					motionConScript.x = position.y;
+					motionConScript.y = position.x;
+				}
+				else if(player.GetComponent<PlayerMotion>())
+				{
+					motionScript.H = position.x;
+					motionScript.V = position.y;
+				}
 			}
 		
         }

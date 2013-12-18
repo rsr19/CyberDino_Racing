@@ -5,7 +5,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class FireButton : MachineGun 
+public class FireButton : MonoBehaviour
 {
 	public delegate void WeaponShoot();
 	public static event WeaponShoot shoot;
@@ -30,8 +30,6 @@ public class FireButton : MachineGun
 					//if it is hit
 					if(Input.GetTouch(i).phase == TouchPhase.Began)
 					{
-						Debug.Log("fire");
-						
 						if(shoot != null)
 						{
 							shoot();

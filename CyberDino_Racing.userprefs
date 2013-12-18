@@ -1,5 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Motion/motion.cs">
     <Files>
       <File FileName="Assets/Scripts/Weapons/MachineGun/Playermg.cs" Line="3" Column="15" />
@@ -7,6 +8,14 @@
       <File FileName="Assets/Scripts/Motion/playermotion.cs" Line="27" Column="21" />
       <File FileName="Assets/Scripts/motioncontroller.cs" Line="163" Column="5" />
       <File FileName="Assets/Scripts/Weapons/staticweaponvars.cs" Line="11" Column="65" />
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Race and GUI scripts\MainMenu.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Race and GUI scripts\SinglePlayerMenu.cs" Line="31" Column="21" />
+      <File FileName="Assets\Scripts\Race and GUI scripts\DinoSelect.cs" Line="41" Column="5" />
+      <File FileName="Assets\Scripts\Race and GUI scripts\MenuMove.cs" Line="75" Column="23" />
+      <File FileName="Assets\Scripts\Race and GUI scripts\MainMenu.cs" Line="43" Column="4" />
+>>>>>>> 2453e1d698cbb9c0ba87bb12860ce2ae5ef9d23d
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
