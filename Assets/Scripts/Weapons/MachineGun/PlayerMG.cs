@@ -1,6 +1,6 @@
 ﻿// Name: Samantha Spray
 // Project: Cyber-Dino Racing
-// Date: 12/16/13
+// Date: 12/17/13
 
 using UnityEngine;
 using System.Collections;
@@ -10,6 +10,7 @@ public class PlayerMG : MachineGun {
 	void Start(){
 		
 		RWStart();
+		FireButton.shoot += FireFunc;
 		
 	}
 	

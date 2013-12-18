@@ -1,9 +1,11 @@
 ﻿//Samantha Spray
 //Project: Cyber-Dino Racing
-//12/16/13
+//12/17/13
 
 using UnityEngine;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Motion : MonoBehaviour {
 
@@ -41,6 +43,16 @@ public class Motion : MonoBehaviour {
 	//Track Variables
 	private int lap = 0; // The number of laps the racer has completed.
 	private GameObject finishLine = null; // The finish line of the track
+	[SerializeField]
+	private List<GameObject> trackers; // List of trackers on the track for respawn and checkpoint functions
+	private bool[] checks; // Array of bools, each element turns true when checkpoints are reached.
+	private int totalCheckpoints; // The number of checkpoints on the track
+	private int trackersBetweenCPs; // The number of trackers between each checkpoint, this will be used to determine which tracker is a checkpoint
+	private GameObject closestTracker; // The closest tracker to the racer
+	private int cTNum; // The number of the closest tracker according to it's name
+	// Added by Myles to track position for rubberbanding effect.
+	private GameObject lastTracker; // Variable for the last tracker that was the closest tracker.
+	private int racePosition; // Their position on the map based on advancement of trackers.
 	#endregion Fields
 
 	#region Properties
@@ -190,6 +202,108 @@ public class Motion : MonoBehaviour {
 			return finishLine;
 		}
 	}
+	
+	private List<GameObject> Trackers // List of trackers on the track for respawn and checkpoint functions
+	{
+		get
+		{
+			if(trackers == null){
+				trackers = new List<GameObject>();
+			}
+			return trackers;
+		}
+		set
+		{
+			trackers = value;
+		}
+
+	}
+	private bool[] Checks // Array of bools, each element turns true when checkpoints are reached.
+	{
+		get
+		{
+			if(checks == null)
+			{
+				checks = new bool[]{false, false, false};
+			}
+			return checks;
+		}
+		set
+		{
+			checks = value;
+		}
+	}
+	protected int TotalCheckpoints // The number of checkpoints on the track
+	{
+		get
+		{
+			return totalCheckpoints;
+		}
+		set
+		{
+			totalCheckpoints = value;
+		}
+	}
+	private int TrackersBetweenCPs // The number of trackers between each checkpoint, this will be used to determine which tracker is a checkpoint
+	{
+		get
+		{
+			if(Trackers != null)
+			{
+				trackersBetweenCPs = Trackers.Count / TotalCheckpoints;
+			}
+			return trackersBetweenCPs;
+		}
+		set
+		{
+			trackersBetweenCPs = value;
+		}
+	}
+	private GameObject ClosestTracker // The closest tracker to the racer
+	{
+		get
+		{
+			return closestTracker;
+		}
+		set
+		{
+			closestTracker = value;
+		}
+	}
+	private int CTNum // The number of the closest tracker according to it's name
+	{
+		get
+		{
+			return cTNum;
+		}
+		set
+		{
+			cTNum = value;
+		}
+	}
+	// Added by Myles to track position for rubberbanding effect.
+	private GameObject LastTracker // Variable for the last tracker that was the closest tracker.
+	{
+		get
+		{
+			return lastTracker;
+		}
+		set
+		{
+			lastTracker = value;
+		}
+	}
+	public int RacePosition // Their position on the map based on advancement of trackers.
+	{
+		get
+		{
+			return racePosition;
+		}
+		set
+		{
+			racePosition = value;
+		}
+	}
 	#endregion Properties
 
 	//Methods
@@ -325,6 +439,33 @@ public class Motion : MonoBehaviour {
 		yield return new WaitForSeconds(TurboDuration);
 	}
 	
-
+//	public void TrackUpdate(){}
+	
+	public void TestTracker()
+	{
+		CTNum = int.Parse(ClosestTracker.name);
+		int compare = CTNum % TrackersBetweenCPs; // This is the remainder used to compare the closest tracker's number and the number of trackers between checkpoints
+		// If compare equals 0, than the closest tracker is a checkpoint.
+		if(compare == 0)
+		{
+			Checks[compare-1] = true;
+		}
+	}
+	
+	public void UpdateClosestTracker()
+	{
+		foreach (GameObject node in Trackers)// Checks for null values
+			{
+			//Made by Lee
+				float lastDistance = Vector3.Distance(this.transform.position, node.transform.position);
+				float thisDistance = Vector3.Distance(this.transform.position, closestTracker.transform.position);
+				
+				if (lastDistance <= thisDistance)
+				{
+					closestTracker = node;
+				}	
+			}
+		
+	}
 	
 }
