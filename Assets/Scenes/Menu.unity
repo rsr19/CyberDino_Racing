@@ -173,6 +173,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 1dedae72074610a48b1d04e48616ea6f, type: 3}
   - {fileID: 2800000, guid: bf9c1e759256dd440a699a372f04c9a9, type: 3}
   - {fileID: 2800000, guid: b4f5ced6abce6fe4ab1f6ef22561802a, type: 3}
+  sizeSetter: .00150000001
 --- !u!114 &1285462422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +190,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 8329faea16be2d74185142bc5218492a, type: 3}
   - {fileID: 2800000, guid: f64182bfe672d31429561dbfb09e7711, type: 3}
   - {fileID: 2800000, guid: 8a37935bf63f3d24f8cb963623e65a1c, type: 3}
+  sizeSetter: .00150000001
 --- !u!114 &1285462423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,3 +243,62 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!1 &1532027657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1532027659}
+  - 131: {fileID: 1532027658}
+  - 114: {fileID: 1532027660}
+  m_Layer: 0
+  m_Name: testGUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!131 &1532027658
+GUITexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1532027657}
+  m_Enabled: 1
+  m_Texture: {fileID: 10400, guid: 0000000000000000e000000000000000, type: 0}
+  m_Color: {r: .5, g: .5, b: .5, a: .5}
+  m_PixelInset:
+    serializedVersion: 2
+    x: -64
+    y: -29
+    width: 128
+    height: 58
+  m_LeftBorder: 0
+  m_RightBorder: 0
+  m_TopBorder: 0
+  m_BottomBorder: 0
+--- !u!4 &1532027659
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1532027657}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .5, y: .5, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &1532027660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1532027657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f57c7f8d51293bc4ca1d16fb4fd937d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testTexture: {fileID: 0}

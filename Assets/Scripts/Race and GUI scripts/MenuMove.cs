@@ -47,7 +47,7 @@ public class MenuMove : MonoBehaviour
 		
 	}
 	
-	public void MoveOnLeft(int _size)
+	public void MoveOffLeft(int _size)
 	{
 		Debug.Log("it worked first");
 		//in a loop
@@ -55,8 +55,12 @@ public class MenuMove : MonoBehaviour
 		{
 			//position the buttons off the screen to the right
 			buttonPos[i].x = Screen.width / 2;
-			buttonPos[i].y = -i;
+			//buttonPos[i].y = -i;
 			
+			while(buttonPos[i].x < 0)
+			{
+				buttonPos[i].x -= 2;
+			}
 		}
 	}
 	
@@ -64,15 +68,20 @@ public class MenuMove : MonoBehaviour
 	{
 		switch(_name)
 		{
-			case "test":
+			case "SinglePlayer":
+				//disable the button graphics
+				mMenu.DisableButtons();
+				//turn off the button functionality
+				//mMenu.enabled = false;
+			
+				//enable the next menu
 				sPMenu.enabled = true;
-				mMenu.enabled = false;
 				break;
-			case "CharSelect":
+			case "Multiplayer":
 				charSelect.enabled = true;
 				sPMenu.enabled = false;
 				break;
-			case "LevelSelect":
+			case "Settings":
 				charSelect.enabled = true;
 				charSelect.enabled = false;
 				break;
