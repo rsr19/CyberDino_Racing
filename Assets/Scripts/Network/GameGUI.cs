@@ -99,9 +99,10 @@ public class GameGUI : MonoBehaviour {
 				networkHandler.JoinGame(gameName, playerName);
 			}
 			
-			//if(GUI.Button (new Rect(boxLeft, boxTop + border + 60, 200, 50), "Join Random Game")) {
-			//	menu = Menu.Connecting;
-			//}
+			if(GUI.Button (new Rect(boxLeft, boxTop + border + 60, 200, 50), "Join Random Game")) {
+				menu = Menu.Connecting;
+                networkHandler.JoinRandomGame(playerName);
+			}
 
 			if(GUI.Button (new Rect(border, Screen.height - 50 - border, boxWidth, 50), "Back")) {
 				menu = Menu.Main;
