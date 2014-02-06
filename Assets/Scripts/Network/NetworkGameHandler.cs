@@ -13,6 +13,7 @@ public class NetworkGameHandler : MonoBehaviour {
 	public string gameMap = "Map Selection";
 
 	private bool onConnectionDataSent = false;
+    private bool isGameRandom = false;
 	
 	ConnectionState connectionState;
 	private int playerCount;
@@ -47,7 +48,12 @@ public class NetworkGameHandler : MonoBehaviour {
 				HostData[] hostData = MasterServer.PollHostList();
 				// connectStatus = "" + hostData.Length + " hosts found";
 				foreach(var server in hostData) {
-					if(server.gameName == gameName) {
+                    if (isGameRandom == true)
+                    {
+                        Network.Connect(server);
+                        connectionState = ConnectionState.Connecting;
+                    }
+					else if(server.gameName == gameName) {
 						
 						// Game Found
 						// Attempt to connect to server	                	
@@ -65,7 +71,7 @@ public class NetworkGameHandler : MonoBehaviour {
 		this.gameName = gameName;
 		this.playerName = playerName;
 		playerNames[0] = playerName;
-		Network.InitializeServer(MAX_PLAYERS, DEFAULT_PORT, !Network.HavePublicAddress());
+        Network.InitializeServer(MAX_PLAYERS, DEFAULT_PORT, !Network.HavePublicAddress());
 		MasterServer.RegisterHost(masterServerGameType, gameName, "Open");
 	}
 
@@ -78,6 +84,16 @@ public class NetworkGameHandler : MonoBehaviour {
 		
 		connectionState = ConnectionState.Looking;
 	}
+
+    public void JoinRandomGame(string playerName)
+    {
+        connectionState = ConnectionState.Connecting;
+        this.playerName = playerName;
+        MasterServer.ClearHostList();
+        MasterServer.RequestHostList(masterServerGameType);
+        isGameRandom = true;
+        connectionState = ConnectionState.Looking;
+    }
 
 	public ConnectionState GetConnectionStatus() {
 		return connectionState;
