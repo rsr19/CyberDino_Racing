@@ -10,7 +10,7 @@ public class NetworkGameHandler : MonoBehaviour {
 	private const int DEFAULT_PORT = 7777;
 	public string masterServerGameType = "CyberDinoRacingv0.1";
 	public string mainMenuScene = "NetworkMainMenuTest";
-	public string gameMap = "(selected track scene goes here)";
+	public string gameMap = "Map Selection";
 
 	private bool onConnectionDataSent = false;
 	
@@ -136,7 +136,6 @@ public class NetworkGameHandler : MonoBehaviour {
 		playerNames[playerCount] = name;
 		playerCount++;
 		Debug.Log (name);
-		//netView.RPC ("ReceivePlayerList", RPCMode.Others, playerCount, playerNames[0], playerNames[1], playerNames[2], playerNames[3], playerNames[4], playerNames[5]);
 	}
 
 	[RPC]

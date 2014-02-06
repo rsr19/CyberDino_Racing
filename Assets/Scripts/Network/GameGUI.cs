@@ -6,12 +6,18 @@ public class GameGUI : MonoBehaviour {
 	public Transform networkHandlerObject;
 	private NetworkGameHandler networkHandler;
 
+	private bool toggleMapSelect = false;
+	private bool toggleDinoSelect = false;
+
 	// Menu states
-	enum Menu { Main, HostGame, JoinGame, Connecting, Lobby, InGame };
-	private Menu menu = Menu.Main;
+	enum Menu { MultiMain, HostGame, JoinGame, Connecting, Lobby, InGame, Replay };
+	private Menu menu = Menu.MultiMain;
 	
 	private string playerName = "";
 	private string gameName = "";
+
+	private string newMapChoice = "";
+	private string newDinoChoice = "Dino 1";
 
 	// Use this for initialization
 	void Start () {
@@ -21,9 +27,9 @@ public class GameGUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (menu != Menu.Main && menu != Menu.JoinGame && menu != Menu.HostGame) {
+		if (menu != Menu.MultiMain && menu != Menu.JoinGame && menu != Menu.HostGame) {
 			if(networkHandler.GetConnectionStatus() == NetworkGameHandler.ConnectionState.Disconnected) {
-				menu = Menu.Main;
+				menu = Menu.MultiMain;
 			}
 		}
 	}
@@ -31,25 +37,25 @@ public class GameGUI : MonoBehaviour {
 	// Draw GUI elements
 	void OnGUI () {	
 
-		if(menu == Menu.Main) {
+		if(menu == Menu.MultiMain) {
 
-			int boxWidth = 200;
-			int boxHeight = 80;
-			int boxLeft = Screen.width/2 - boxWidth/2;
-			int boxTop = Screen.height/2 - boxHeight/2;
+			float boxWidth = Screen.width*.2f;
+			float boxHeight = Screen.height*.1f;
+			float boxLeft = Screen.width/2 - boxWidth/2;
+			float boxTop = Screen.height/2 - boxHeight/2;
 			int border = 10;
 			int lineHeight = 24;
 			
 			GUI.Box(new Rect(boxLeft, boxTop - boxHeight, boxWidth, boxHeight), "Name:");
 			playerName = GUI.TextField(new Rect (boxLeft + border, boxTop - boxHeight + border + lineHeight, boxWidth - border*2, lineHeight), playerName);
 			
-			if(GUI.Button (new Rect(boxLeft, boxTop + border, 200, 50), "Host Game")) {	
+			if(GUI.Button (new Rect(boxLeft, boxTop + border, boxWidth, boxHeight/2), "Host Game")) {	
 				if(playerName != ""){
 					menu = Menu.HostGame;
 				}
 			}
 			
-			if(GUI.Button (new Rect(boxLeft, boxTop + border + 60, 200, 50), "Join Game")) {
+			if(GUI.Button (new Rect(boxLeft, boxTop + border*2 + boxHeight/2, boxWidth, boxHeight/2), "Join Game")) {
 				if(playerName != ""){
 					menu = Menu.JoinGame;
 				}
@@ -77,7 +83,7 @@ public class GameGUI : MonoBehaviour {
 			}
 
 			if(GUI.Button (new Rect(border, Screen.height - 50 - border, boxWidth, 50), "Back")) {
-				menu = Menu.Main;
+				menu = Menu.MultiMain;
 			}
 
 		}
@@ -104,7 +110,7 @@ public class GameGUI : MonoBehaviour {
 			//}
 
 			if(GUI.Button (new Rect(border, Screen.height - 50 - border, boxWidth, 50), "Back")) {
-				menu = Menu.Main;
+				menu = Menu.MultiMain;
 			}
 		}
 
@@ -125,7 +131,7 @@ public class GameGUI : MonoBehaviour {
 			
 			if (GUI.Button (new Rect(boxLeft + boxWidth/2 - buttonWidth/2, boxTop - 80 + boxHeight - buttonHeight - border, buttonWidth, buttonHeight), "Cancel")) {
 				networkHandler.LeaveGame();
-				menu = Menu.Main;
+				menu = Menu.MultiMain;
 			}
 			
 			if(networkHandler.GetConnectionStatus() == NetworkGameHandler.ConnectionState.InLobby) {
@@ -137,10 +143,8 @@ public class GameGUI : MonoBehaviour {
 
 			float boxWidth = Screen.width*.4f;
 			float boxHeight = Screen.height*.125f;
-			float boxTop = Screen.height/2 - boxHeight/2;
 			float borderVertical = Screen.height*.015f;
 			float borderHorizontal = Screen.width*.015f;
-			int lineHeight = 24;
 
 			GUI.Box(new Rect(Screen.width - boxWidth - borderHorizontal, Screen.height - boxHeight*5 - borderVertical*5, boxWidth, boxHeight), networkHandler.GetPlayerName(1));
 			GUI.Box(new Rect(Screen.width - boxWidth - borderHorizontal, Screen.height - boxHeight*4 - borderVertical*4, boxWidth, boxHeight), networkHandler.GetPlayerName(2));
@@ -148,29 +152,118 @@ public class GameGUI : MonoBehaviour {
 			GUI.Box(new Rect(Screen.width - boxWidth - borderHorizontal, Screen.height - boxHeight*2 - borderVertical*2, boxWidth, boxHeight), networkHandler.GetPlayerName(4));
 			GUI.Box(new Rect(Screen.width - boxWidth - borderHorizontal, Screen.height - boxHeight - borderVertical, boxWidth, boxHeight), networkHandler.GetPlayerName(5));
 
-			if(GUI.Button (new Rect(Screen.width - boxWidth*1.5f - borderHorizontal, Screen.height*.02f, boxWidth*1.5f, boxHeight*2.1f), networkHandler.GetPlayerName(0))){
-
+			if(GUI.Button (new Rect(Screen.width - boxWidth*1.5f - borderHorizontal, Screen.height*.02f, boxWidth*1.5f, boxHeight*2.1f), networkHandler.GetPlayerName(0) + " - " + newDinoChoice)){
+				toggleDinoSelect = true;
 			}
 
 			if(Network.isServer){
-				if(GUI.Button (new Rect(borderHorizontal, Screen.height*.3f, Screen.width*.56f, Screen.height*.55f), "Map Select")){
+				if (GUI.Button (new Rect(borderHorizontal, Screen.height*.3f, Screen.width*.56f, Screen.height*.55f), networkHandler.gameMap)){
+					toggleMapSelect = true;
+				}
 
+				if (toggleMapSelect == true){
+					GUI.Window (0, new Rect(-5, -5, Screen.width + 10, Screen.height + 10), mapSelection, "Map Selection");
 				}
 			}
 
 			else{
-				GUI.Box (new Rect(borderHorizontal, Screen.height*.3f, Screen.width*.56f, Screen.height*.55f), "Map Select");
+				GUI.Box (new Rect(borderHorizontal, Screen.height*.3f, Screen.width*.56f, Screen.height*.55f), networkHandler.gameMap);
 			}
 
 			if(GUI.Button (new Rect(borderHorizontal, Screen.height - Screen.height*.1f - borderVertical, Screen.width*.15f, Screen.height*.1f), "Leave Game")) {
 				networkHandler.LeaveGame();
-				menu = Menu.Main;
+				menu = Menu.MultiMain;
+			}
+
+			if(GUI.Button (new Rect(Screen.width*.2f, Screen.height - Screen.height*.1f - borderVertical, Screen.width*.15f, Screen.height*.1f), "Start Game")) {
+				menu = Menu.InGame;
+			}
+
+			if (toggleDinoSelect == true){
+				GUI.Window (1, new Rect(-5, -5, Screen.width + 10, Screen.height + 10), dinoSelection, "Dino Selection");
 			}
 		}
 
-		else if(menu == Menu.InGame) {
+		if(menu == Menu.InGame) {
+			menu = Menu.Replay;
 		}
 
+		else if(menu == Menu.Replay) {
+
+			int boxWidth = 200;
+			int boxHeight = 40;
+			int boxLeft = Screen.width/2 - boxWidth/2;
+			int boxTop = Screen.height/2 - boxHeight/2;
+			int border = 10;
+			
+			GUI.Box(new Rect(boxLeft, boxTop - boxHeight, boxWidth, boxHeight), "Replay?");
+			
+			if(GUI.Button (new Rect(boxLeft, boxTop + border, 200, 50), "Yes")) {	
+				if(playerName != ""){
+					menu = Menu.Lobby;
+				}
+			}
+			
+			if(GUI.Button (new Rect(boxLeft, boxTop + border + 60, 200, 50), "No")) {
+				if(playerName != ""){
+					networkHandler.LeaveGame();
+					menu = Menu.MultiMain;
+				}
+			}
+		}
+
+
+	}
+
+	void mapSelection(int windowID){
+
+		if (GUI.Button (new Rect(Screen.width*.01f, Screen.height*.02f, Screen.width*.2f, Screen.height*.15f), "Map 1")){
+			newMapChoice = "Map 1";
+		}
+
+		if (GUI.Button (new Rect(Screen.width*.01f, Screen.height*.04f + Screen.height*.15f, Screen.width*.2f, Screen.height*.15f), "Map 2")){
+			newMapChoice = "Map 2";
+		}
+
+		if (GUI.Button (new Rect(Screen.width*.01f, Screen.height*.06f + (Screen.height*.15f)*2, Screen.width*.2f, Screen.height*.15f), "Map 3")){
+			newMapChoice = "Map 3";
+		}
+
+		if (GUI.Button (new Rect(Screen.width*.01f, Screen.height*.08f + (Screen.height*.15f)*3, Screen.width*.2f, Screen.height*.15f), "Map 4")){
+			newMapChoice = "Map 4";
+		}
+
+		if (GUI.Button (new Rect(Screen.width*.01f, Screen.height - Screen.height*.17f, Screen.width*.2f, Screen.height*.15f), "Select Map")){
+			networkHandler.gameMap = newMapChoice;
+			toggleMapSelect = false;
+		}
+
+		GUI.Box(new Rect(Screen.width *.26f, Screen.height*.05f, Screen.width *.7f, Screen.height - Screen.height*.1f), newMapChoice);
+	}
+
+	void dinoSelection(int windowID){
+		
+		if (GUI.Button (new Rect(Screen.width*.01f, Screen.height*.02f, Screen.width*.2f, Screen.height*.15f), "Dino 1")){
+			newDinoChoice = "Dino 1";
+		}
+		
+		if (GUI.Button (new Rect(Screen.width*.01f, Screen.height*.04f + Screen.height*.15f, Screen.width*.2f, Screen.height*.15f), "Dino 2")){
+			newDinoChoice = "Dino 2";
+		}
+		
+		if (GUI.Button (new Rect(Screen.width*.01f, Screen.height*.06f + (Screen.height*.15f)*2, Screen.width*.2f, Screen.height*.15f), "Dino 3")){
+			newDinoChoice = "Dino 3";
+		}
+		
+		if (GUI.Button (new Rect(Screen.width*.01f, Screen.height*.08f + (Screen.height*.15f)*3, Screen.width*.2f, Screen.height*.15f), "Dino 4")){
+			newDinoChoice = "Dino 4";
+		}
+		
+		if (GUI.Button (new Rect(Screen.width*.01f, Screen.height - Screen.height*.17f, Screen.width*.2f, Screen.height*.15f), "Select Dino")){
+			toggleDinoSelect = false;
+		}
+		
+		GUI.Box(new Rect(Screen.width *.26f, Screen.height*.05f, Screen.width *.7f, Screen.height - Screen.height*.1f), newDinoChoice);
 	}
 
 	string GetConnectionState() {
